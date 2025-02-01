@@ -1,0 +1,1 @@
+Script for finding the worst word pattern with which to start a hard wordle game.
