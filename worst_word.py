@@ -4,11 +4,11 @@ from pprint import pprint
 with open("words.txt", "r") as f:
     words = [word.strip() for word in f.readlines()]
 
-word_parts = defaultdict(list)
+word_parts = defaultdict(set)
 for word in words:
     for i in range(len(word)):
         fragment = word[:i] + "_" + word[i+1:]
-        word_parts[fragment].append(word)
+        word_parts[fragment].add(word)
 
 worst_word_fragment = ""
 worst_word_count = -10e7
@@ -22,3 +22,5 @@ worst_words = sorted(word_parts[worst_word_fragment])
 pprint(worst_word_fragment)
 pprint(worst_word_count)
 pprint(worst_words)
+
+ordered_fragments = sorted([(len(v), k, v) for k, v in word_parts.items()], key=lambda x: len(x[2]), reverse=True)
